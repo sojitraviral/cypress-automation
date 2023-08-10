@@ -9,18 +9,18 @@ describe("Dash board - ", () => {
         cy.login();
         cy.visit("https://rahulshettyacademy.com/client");
 
-        // dashoard.takeScreenShot();
+        dashoard.takeScreenShot();
 
         dashoard.addToCart(["zara"]);
 
         dashoard.getButton('cart').get('label').contains("1");
         dashoard.getButton('cart').click();
 
-        cp.validateItemDetails({ item1: ["#6262e95ae26b7e1a10e89bf0", "zara coat 3", "MRP $ 31500", "In Stock", "Buy Now", "btn btn-danger"] });
+        cp.validateItemDetails({ item1: ["#6262e95ae26b7e1a10e89bf0", "zara coat 3", " MRP $ 31500", " In Stock"] });
 
         cp.validateButtonName("Continue Shopping", "Checkout");
 
-        cp.deleteAllItem();
+        // cp.deleteAllItem();
     })
 
 })

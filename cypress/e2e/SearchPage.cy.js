@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 
-import BasePage from "../pageObjects/basePage";
 import DashboardPage from "../pageObjects/dashboardPage";
 
 describe("Dash board - ", () => {
@@ -17,7 +16,7 @@ describe("Dash board - ", () => {
         cy.get('.card-body > h5').then(($item) => {
             length = $item.length;
             for (let i = 0; i < length; i++) {
-                cy.get('.card-body > h5').first().contains('zara');
+                cy.get('.card-body > h5').eq(i).contains('zara');
             }
         })
 
@@ -33,7 +32,7 @@ describe("Dash board - ", () => {
         cy.wait('@response');
         cy.get('.card-body > h5').then(($item) => {
             length = $item.length;
-            cy.get('.card-body > h5').first().contains('zara');
+            cy.get('.card-body > h5').eq(i).contains('zara');
         })
     })
 

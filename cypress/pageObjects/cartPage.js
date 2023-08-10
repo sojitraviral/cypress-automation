@@ -12,17 +12,12 @@ export default class CartPage extends BasePage {
         this.getButton('cart').get('label').contains(`${itemCount}`);
 
         for (let i = 0; i < itemCount; i++) {
-            const itemBlock = cy.get('.cart > ul').first().find('.cartSection');
-            //cy.log(itemBlock);
+            cy.get('.cart > ul').eq(i).find('.cartSection').as('verifyItemDetails');
             const itemValue = Object.values(itemDetails)[i];
-            itemBlock.find("h3").should('have.text', itemValue[1]);
-            // itemBlock.find("P").first().should('have.text', itemValue[0]);
-
-
-            // itemBlock.find("P").select(1).should('have.text', itemValue[2]);
-            // itemBlock.find(".stockStatus").should('have.text', itemValue[3]);
-            // itemBlock.find("button").first().should('have.text', itemValue[4]);
-            // itemBlock.find("button").last().should('have.text', itemValue[5]);
+            cy.get('@verifyItemDetails').children('p').first().should('have.text', itemValue[0]);
+            cy.get("@verifyItemDetails").find('h3').should('have.text', itemValue[1]);
+            cy.get("@verifyItemDetails").find('h3').next().should('have.text', itemValue[2]);
+            cy.get("@verifyItemDetails").find('.stockStatus').should('have.text', itemValue[3]);
         }
     }
 
