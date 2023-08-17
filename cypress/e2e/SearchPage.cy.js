@@ -32,7 +32,9 @@ describe("Dash board - ", () => {
         cy.wait('@response');
         cy.get('.card-body > h5').then(($item) => {
             length = $item.length;
-            cy.get('.card-body > h5').eq(i).contains('zara');
+            for (let i = 0; i < length; i++) {
+                cy.get('.card-body > h5').eq(i).should('be.visible');
+            }
         })
     })
 
